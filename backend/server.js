@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db.js';
 import taskRouter from './routes/task.route.js'
 import cors from 'cors'
+import path from 'node:path'
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const __dirname = path.resolve();
 
 //Routes
 app.use('/api/tasks',taskRouter)

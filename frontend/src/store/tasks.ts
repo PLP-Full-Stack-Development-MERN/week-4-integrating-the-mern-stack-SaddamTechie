@@ -1,6 +1,6 @@
 import axios from "axios"
 import {create} from "zustand"
-const apiUrl = "http://127.0.0.1:8000"
+//const apiUrl = "http://127.0.0.1:8000"
 import { toast } from "sonner"
 
 export type Task = {
@@ -14,7 +14,7 @@ const useTaskStore = create((set)=>({
     tasks:[],
     fetchTasks:async () =>{
         try {
-            const response =  await axios.get(`${apiUrl}/api/tasks`)
+            const response =  await axios.get(`/api/tasks`)
             set({tasks:response.data})
         } catch (error) {
             console.log("Error",error)
@@ -23,7 +23,7 @@ const useTaskStore = create((set)=>({
     },
     createTask:async (newTask:Task) =>{
         try {
-            const response = await axios.post(`${apiUrl}/api/tasks`,newTask)
+            const response = await axios.post(`/api/tasks`,newTask)
             set((state:any)=>({
                 tasks:[...state.tasks,response.data]
             }))
@@ -33,7 +33,7 @@ const useTaskStore = create((set)=>({
     },
     updateTask:async (taskId:string,updatedTask:Task) =>{
         try {
-            await axios.put(`${apiUrl}/api/tasks`,updatedTask)
+            await axios.put(`/api/tasks`,updatedTask)
             set((state:any)=>({
                 tasks:state.tasks.map((task:any)=>task.id===taskId?updatedTask:task)
             }))
@@ -43,7 +43,7 @@ const useTaskStore = create((set)=>({
     },
     deleteTask:async (taskId:string) =>{
         try {
-            await axios.delete(`${apiUrl}/api/tasks/${taskId}`)
+            await axios.delete(`/api/tasks/${taskId}`)
             toast("Task deleted")
             set((state:any)=>({
                 tasks:state.tasks.filter((task:any)=>task.id!==taskId)

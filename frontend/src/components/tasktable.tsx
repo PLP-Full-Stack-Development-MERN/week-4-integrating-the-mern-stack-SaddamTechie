@@ -36,6 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import useTaskStore from "@/store/tasks"
+import { TaskEditSheet } from "./editsheet"
 
 
 
@@ -105,7 +106,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => {
       const task = row.original
     
-    const deleteTask = useTaskStore((state) => state.deleteTask);
+    const deleteTask = useTaskStore((state:any) => state.deleteTask);
 
       const handleDeleteTask = (taskId:string) =>{
         deleteTask(taskId)
@@ -113,7 +114,6 @@ export const columns: ColumnDef<Task>[] = [
     }
 
     
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -130,7 +130,7 @@ export const columns: ColumnDef<Task>[] = [
               Copy task ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem><Button variant="ghost">Edit</Button></DropdownMenuItem>
+            <DropdownMenuItem><span onClick={(e)=>{e.stopPropagation();}}><TaskEditSheet task={task}/></span></DropdownMenuItem>
             <DropdownMenuItem><Button variant="ghost" onClick={()=>handleDeleteTask(task._id)}>Delete</Button></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -147,8 +147,8 @@ export function TaskTableDemo() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
-  const tasks = useTaskStore((state) => state.tasks);
-    const fetchTasks = useTaskStore((state) => state.fetchTasks);
+  const tasks = useTaskStore((state:any) => state.tasks);
+    const fetchTasks = useTaskStore((state:any) => state.fetchTasks);
   //const { tasks,fetchTasks} = useTaskStore();
   React.useEffect(() => {
     fetchTasks();
