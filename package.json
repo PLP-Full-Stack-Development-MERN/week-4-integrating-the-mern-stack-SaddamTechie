@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon backend/server.js",
-    "generate-data": "node backend/scripts/task.faker.js"
+    "generate-data": "node backend/scripts/task.faker.js",
+    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start":"node backend/server.js"
   },
   "keywords": [],
   "author": "",
