@@ -9,11 +9,11 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/SaddamTechie/Group16-ecommerce.git ecommerce
-   cd ecommerce
+   git clone https://github.com/PLP-Full-Stack-Development-MERN/week-4-integrating-the-mern-stack-SaddamTechie.git week4
+   cd week4
    ```
 
-2. Install dependencies:
+2. Install dependencies(for both frontend & backend):
 
    ```bash
    npm run build
@@ -32,13 +32,19 @@
 
    Create a `.env` file in the root directory and add the above configuration.
 
-5. Start the server:
+5. Insert fake data into database
+
+   ```bash
+   npm run generate-data
+   ```
+
+6. Start the server:
 
    ```bash
    npm run start
    ```
 
-6. Access the application at `http://localhost:8000`
+   Go to localhost port 8000 to access your web app.
 
 ## 📈 Future Implementations and Improvements
 
